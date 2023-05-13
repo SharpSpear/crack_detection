@@ -30,9 +30,9 @@ col1, col2 = st.columns(2)
 with col1:
     try:
         if source_img is None:
-            default_image_path = str('test.jpg')
+            default_image_path = 'test.jpg'
             source_img = cv2.imread(default_image_path)
-            st.image(default_image_path, caption="Default Image",
+            st.image(source_img, caption="Default Image",
                         use_column_width=True)
             uploaded_image = source_img
         else:
