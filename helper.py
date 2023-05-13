@@ -24,4 +24,5 @@ def result_image(conf, model, image):
         color = (255,0,0)
         thickness = 2
         image = cv2.rectangle(image, start_point, end_point, color, thickness)
+        image = cv2.putText(image, 'Crack', (int(box[1] * height), int(box[0] * width) - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     return image
