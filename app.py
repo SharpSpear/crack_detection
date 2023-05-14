@@ -35,6 +35,7 @@ confidence = float(st.sidebar.slider(
     "Select Detection Confidence", 25, 100, 50)) / 100
 
 model_path = str(ROOT / 'saved_model')
+print('model path', model_path)
 # Load Pre-trained ML Model
 try:
     model = helper.load_model(model_path)
