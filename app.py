@@ -3,6 +3,21 @@ import streamlit as st
 import helper
 import numpy as np
 import tempfile
+from pathlib import Path
+import sys
+
+# Get the absolute path of the current file
+file_path = Path(__file__).resolve()
+
+# Get the parent directory of the current file
+root_path = file_path.parent
+
+# Add the root path to the sys.path list if it is not already there
+if root_path not in sys.path:
+    sys.path.append(str(root_path))
+
+# Get the relative path of the root directory with respect to the current working directory
+ROOT = root_path.relative_to(Path.cwd())
 
 st.set_page_config(
     page_title="Crack Detection using SSD_MobileNetV2",
@@ -19,7 +34,7 @@ source_radio = st.sidebar.radio(
 confidence = float(st.sidebar.slider(
     "Select Detection Confidence", 25, 100, 50)) / 100
 
-model_path = 'saved_model'
+model_path = str(ROOT / 'saved_model')
 # Load Pre-trained ML Model
 try:
     model = helper.load_model(model_path)
@@ -35,7 +50,7 @@ if source_radio == 'Image':
     with col1:
         try:
             if source_img is None:
-                default_image_path = 'test.jpg'
+                default_image_path = str(ROOT / 'test.jpg')
                 source_img = cv2.imread(default_image_path)
                 st.image(source_img, caption="Default Image",
                             use_column_width=True)
@@ -62,7 +77,6 @@ elif source_radio == 'Video':
         tfile.write(f.read())
     # if tfile:
         st.video(tfile.name)
-        print(tfile.name)
         if st.sidebar.button('Detect Objects'):
             try:
                 vid_cap = cv2.VideoCapture(tfile.name)
