@@ -63,7 +63,7 @@ elif source_radio == 'Video':
     # if tfile:
         st.video(tfile.name)
         print(tfile.name)
-        if st.sidebar.button('Detect Video Objects'):
+        if st.sidebar.button('Detect Objects'):
             try:
                 vid_cap = cv2.VideoCapture(tfile.name)
                 st_frame = st.empty()
