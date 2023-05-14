@@ -2,3 +2,5 @@ streamlit
 opencv-python
 numpy
 tensorflow
+pathlib
+sys
