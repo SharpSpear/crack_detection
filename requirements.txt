@@ -3,4 +3,3 @@ opencv-python
 numpy
 tensorflow
 pathlib
-sys
